@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Solvix POS - Renderer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-root">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="logo">🛒</div>
+          <div class="title">Solvix POS</div>
+        </div>
+        <nav class="nav" id="nav">
+          <button data-view="dashboard" class="nav-item active">Dashboard</button>
+          <button data-view="pos" class="nav-item">POS / Billing</button>
+          <button data-view="products" class="nav-item">Products</button>
+          <button data-view="inventory" class="nav-item">Inventory</button>
+          <button data-view="reports" class="nav-item">Reports</button>
+          <button data-view="settings" class="nav-item">Settings</button>
+        </nav>
+        <div class="sidebar-footer" id="sidebar-footer">
+          <div class="admin">Administrator</div>
+          <div class="contact" id="footer-contact">Contact</div>
+        </div>
+      </aside>
+
+      <main class="main" id="main">
+        <!-- Views rendered here -->
+        <section id="view-dashboard" class="view"> 
+          <h2 class="page-title">Dashboard</h2>
+          <div class="dashboard-grid">
+            <div class="left-panel">
+              <div id="stock-dashboard" class="card"></div>
+            </div>
+            <aside class="right-panel">
+              <div class="card">Quick Stats</div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="view-pos" class="view hidden">
+          <div class="pos-grid">
+            <div class="left-col">
+              <div class="search-area card">
+                <input id="scan-input" placeholder="Scan or search product by name, SKU, barcode" />
+                <div id="search-results" class="results"></div>
+              </div>
+              <div class="cart-area card">
+                <h3>Transaction Basket</h3>
+                <div class="cart-table-wrap">
+                  <table id="cart-table" class="cart-table">
+                    <thead>
+                      <tr><th>Item</th><th>Unit</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="right-col">
+              <div class="billing-panel card" id="billing-panel">
+                <h3>Invoice</h3>
+                <div id="billing-lines"></div>
+                <div class="totals">
+                  <div class="line"><span>Subtotal</span><span id="subtotal">0</span></div>
+                  <div class="line"><span>Tax</span><span id="tax">0</span></div>
+                  <div class="line total"><span>Total</span><span id="total">0</span></div>
+                </div>
+                <div class="actions">
+                  <button id="pay-btn" class="pay-btn">Pay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-products" class="view hidden">
+          <h2 class="page-title">Products</h2>
+          <div id="products-list" class="card"></div>
+        </section>
+
+        <section id="view-inventory" class="view hidden">
+          <h2 class="page-title">Inventory</h2>
+          <div id="inventory-table" class="card"></div>
+        </section>
+
+        <section id="view-reports" class="view hidden">
+          <h2 class="page-title">Reports</h2>
+          <div id="reports-area" class="card"></div>
+        </section>
+
+        <section id="view-settings" class="view hidden">
+          <h2 class="page-title">Settings</h2>
+          <div id="settings-area" class="card"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Prescription Interceptor Modal -->
+    <div id="prescription-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-panel">
+        <h3>Prescription Required</h3>
+        <p>This cart contains prescription-only medicines. Please enter patient and doctor names to proceed.</p>
+        <label>Patient Name<input id="modal-patient" type="text"/></label>
+        <label>Doctor Name<input id="modal-doctor" type="text"/></label>
+        <div class="modal-actions">
+          <button id="modal-cancel">Cancel</button>
+          <button id="modal-save">Save & Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./renderer.js" type="module"></script>
+  </body>
+</html>

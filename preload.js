@@ -1,0 +1,28 @@
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  getProducts: async () => ipcRenderer.invoke('kbpos-get-products'),
+  getSettings: async () => ipcRenderer.invoke('kbpos-get-settings'),
+  setSetting: async (key, value) => ipcRenderer.invoke('kbpos-set-setting', key, value),
+  createOrder: async (order) => ipcRenderer.invoke('kbpos-create-order', order),
+  getOrders: async () => ipcRenderer.invoke('kbpos-get-orders'),
+  deleteOrder: async (orderId) => ipcRenderer.invoke('kbpos-delete-order', orderId),
+  getBatches: async (productId) => ipcRenderer.invoke('kbpos-get-batches', productId),
+  addBatch: async (batch) => ipcRenderer.invoke('kbpos-add-batch', batch),
+  getInventoryHistory: async (limit) => ipcRenderer.invoke('kbpos-get-inventory-history', limit),
+  addInventoryHistory: async (entry) => ipcRenderer.invoke('kbpos-add-inventory-history', entry),
+  getCustomers: async () => ipcRenderer.invoke('kbpos-get-customers'),
+  saveCustomer: async (customer) => ipcRenderer.invoke('kbpos-save-customer', customer),
+  deleteCustomer: async (customerId) => ipcRenderer.invoke('kbpos-delete-customer', customerId),
+  saveProduct: async (product) => ipcRenderer.invoke('kbpos-save-product', product),
+  deleteProduct: async (productId) => ipcRenderer.invoke('kbpos-delete-product', productId),
+  resetDatabase: async () => ipcRenderer.invoke('kbpos-reset-database'),
+  printReceipt: async () => ipcRenderer.invoke('kbpos-print-receipt'),
+  getCategories: async () => ipcRenderer.invoke('kbpos-get-categories'),
+  saveCategory: async (category) => ipcRenderer.invoke('kbpos-save-category', category),
+  deleteCategory: async (categoryId) => ipcRenderer.invoke('kbpos-delete-category', categoryId),
+  getNextReceiptNumber: async () => ipcRenderer.invoke('kbpos-get-next-receipt-number'),
+  getExpenses: async () => ipcRenderer.invoke('kbpos-get-expenses'),
+  saveExpense: async (expense) => ipcRenderer.invoke('kbpos-save-expense', expense),
+  deleteExpense: async (expenseId) => ipcRenderer.invoke('kbpos-delete-expense', expenseId),
+});
