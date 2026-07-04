@@ -91,11 +91,11 @@ The Community Edition is **completely free**, and the source code will be publis
 
 ## Orders
 
-![Orders](assets/screens/orders.png)
+![Orders](assets/screens/oders.png)
 
 ## Receipt
 
-![Receipt](assets/screens/receipt.png)
+![Receipt](assets/screens/reciept.png)
 
 ## Customers
 
